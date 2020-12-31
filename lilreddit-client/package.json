@@ -9,6 +9,7 @@
     "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.6",
     "@chakra-ui/core": "^1.0.0-rc.8",
     "@chakra-ui/icons": "^1.0.1",
     "@emotion/styled": "^10.0.27",
@@ -26,9 +27,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@graphql-codegen/cli": "1.19.1",
-    "@graphql-codegen/typescript": "1.17.11",
-    "@graphql-codegen/typescript-operations": "1.17.9",
+    "@graphql-codegen/cli": "1.19.4",
+    "@graphql-codegen/typescript": "^1.19.0",
+    "@graphql-codegen/typescript-operations": "1.17.12",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.1",
     "@graphql-codegen/typescript-urql": "^2.0.2",
     "@types/node": "^14.14.7",
     "typescript": "^4.0.5"

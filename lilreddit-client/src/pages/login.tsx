@@ -13,14 +13,14 @@ import NextLink from "next/link";
 interface loginProps {}
 
 const Login: React.FC<loginProps> = ({}) => {
-  const [, login] = useLoginMutation();
+  const [login] = useLoginMutation();
   const router = useRouter();
   return (
     <Wrapper variant="small">
       <Formik
         initialValues={{ usernameOrEmail: "", password: "" }}
         onSubmit={async (values, { setErrors }) => {
-          const response = await login(values);
+          const response = await login({ variables: values });
           if (response.data?.login.errors) {
             setErrors(toErrorMap(response.data.login.errors));
           } else if (response.data?.login.user) {
@@ -67,4 +67,4 @@ const Login: React.FC<loginProps> = ({}) => {
   );
 };
 
-export default withUrqlClient(createUrqlClient)(Login);
+export default Login;
