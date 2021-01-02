@@ -32,13 +32,13 @@
 
 I followed Ben Awad's [Fullstack Video](https://www.youtube.com/watch?v=I6ypD7qv3Z8&t=34930s)
 
-Points I learned:
+Points I learned🤠:
 
 - Got a new prespective to developing software. I really loved to know and understand how to study code and work with it when things don't seems to work your way.
 - Studied a new stack and implemented it.
 - PS: Do support him by Subscribing to his channel
 - PPS: Video is liitle long so proceed with caution
-- Chears
+- Chears🎊
 
 <div align="center">
 <img src="https://emojipedia-us.s3.amazonaws.com/content/2017/09/21/animoji-alien-emojipedia.gif" width="400"/>
