@@ -1,21 +1,22 @@
 import React from "react";
 import { withUrqlClient } from "next-urql";
 import { createUrqlClient } from "../utils/createUrqlClient";
-import { usePostsQuery } from "../generated/graphql";
+import { PostsQuery, usePostsQuery } from "../generated/graphql";
 import { Layout } from "../components/Layout";
 import { Link, Stack, Box, Heading, Text, Flex, Button } from "@chakra-ui/core";
 import NextLink from "next/link";
 import { useState } from "react";
 import { UpdootSection } from "../components/UpdootSection";
 import EditDeletePostButtons from "../components/EditDeletePostButtons";
+import { withApollo } from "../utils/withApollo";
 
 const Index = () => {
-  const [variables, setVariables] = useState({
-    limit: 15,
-    cursor: null as null | string,
-  });
-  const { data, error, loading } = usePostsQuery({
-    variables,
+  const { data, error, loading, fetchMore, variables } = usePostsQuery({
+    variables: {
+      limit: 15,
+      cursor: null,
+    },
+    notifyOnNetworkStatusChange: true,
   });
 
   //console.log(data, fetching);
@@ -62,9 +63,28 @@ const Index = () => {
         <Flex>
           <Button
             onClick={() => {
-              setVariables({
-                limit: variables.limit,
-                cursor: data.posts.posts[data.posts.posts.length - 1].createdAt,
+              fetchMore({
+                variables: {
+                  limit: variables?.limit,
+                  cursor:
+                    data.posts.posts[data.posts.posts.length - 1].createdAt,
+                },
+                // updateQuery: (prevValues, { fetchMoreResult }): PostsQuery => {
+                //   if (fetchMoreResult) {
+                //     return prevValues as PostsQuery;
+                //   }
+                //   return {
+                //     __typename: "Query",
+                //     posts: {
+                //       __typename: "PaginatedPosts",
+                //       hasMore: (fetchMoreResult as PostsQuery).posts.hasMore,
+                //       posts: [
+                //         ...(prevValues as PostsQuery).posts.posts,
+                //         ...(fetchMoreResult as PostsQuery).posts.posts,
+                //       ],
+                //     },
+                //   };
+                // },
               });
             }}
             isLoading={loading}
@@ -79,4 +99,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default withApollo({ ssr: true })(Index);

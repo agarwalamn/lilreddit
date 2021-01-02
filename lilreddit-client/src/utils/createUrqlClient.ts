@@ -122,6 +122,7 @@ export const createUrqlClient = (ssrExchange: any, ctx: any) => {
                 { id: postId }
               );
               if (data) {
+                console.log(data);
                 if (data.voteStatus === value) {
                   return;
                 }

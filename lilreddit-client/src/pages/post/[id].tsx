@@ -3,6 +3,7 @@ import { Layout } from "../../components/Layout";
 import { Box, Heading } from "@chakra-ui/core";
 import { useGePostFromUrl } from "../../utils/useGetPostFromUrl";
 import EditDeletePostButtons from "../../components/EditDeletePostButtons";
+import { withApollo } from "../../utils/withApollo";
 
 const Post: React.FC<{}> = ({}) => {
   const { data, error, loading } = useGePostFromUrl();
@@ -41,4 +42,4 @@ const Post: React.FC<{}> = ({}) => {
   );
 };
 
-export default Post;
+export default withApollo({ ssr: true })(Post);

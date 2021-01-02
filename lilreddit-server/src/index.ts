@@ -29,7 +29,7 @@ const main = async () => {
     entities: [Post, User, Updoot],
   });
 
-  (await conn).runMigrations();
+  // (await conn).runMigrations();
   //await Post.delete({});
   const app = express();
 
